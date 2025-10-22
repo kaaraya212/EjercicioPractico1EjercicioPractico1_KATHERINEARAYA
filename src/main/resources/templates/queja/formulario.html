@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <div th:fragment="contenido">
+        <h2>Formulario de Sugerencias y Quejas</h2>
+        <form th:action="@{/quejas/guardar}" th:object="${queja}" method="post">
+            <div class="mb-3">
+                <label>Nombre</label>
+                <input type="text" th:field="*{nombreCliente}" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" th:field="*{email}" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Teléfono</label>
+                <input type="text" th:field="*{telefono}" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Tipo</label>
+                <select th:field="*{tipo}" class="form-select">
+                    <option value="QUEJA">Queja</option>
+                    <option value="SUGERENCIA">Sugerencia</option>
+                    <option value="CONSULTA">Consulta</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Asunto</label>
+                <input type="text" th:field="*{asunto}" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label>Mensaje</label>
+                <textarea th:field="*{mensaje}" class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </form>
+    </div>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<!-- Esta es la página principal del sitio web TechShop -->
+<html>
+    <div th:fragment="contenido">
+        <h2>Listado de Libros</h2>
+        <a href="/libros/nuevo" class="btn btn-success mb-3">Agregar Libro</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Categoría</th>
+                    <th>Disponible</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="libro : ${libros}">
+                    <td th:text="${libro.titulo}"></td>
+                    <td th:text="${libro.autor}"></td>
+                    <td th:text="${libro.categoria.nombre}"></td>
+                    <td th:text="${libro.disponible ? 'Sí' : 'No'}"></td>
+                    <td>
+                        <a th:href="@{'/libros/modificar/' + ${libro.id}}" class="btn btn-primary btn-sm">Editar</a>
+                        <form th:action="@{'/libros/eliminar'}" method="post" style="display:inline;">
+                            <input type="hidden" th:name="id" th:value="${libro.id}" />
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</html>
